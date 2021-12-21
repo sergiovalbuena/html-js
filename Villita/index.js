@@ -20,42 +20,61 @@ for(var i = 0; i < 10; i++)
 
 var vp = document.getElementById("villita");
 var papel = vp.getContext("2d");
-var mapa = "imgs/tile.png";
-var imgVaca = "imgs/vaca.png";
+//var mapa = "imgs/tile.png";
+//var imgVaca = "imgs/vaca.png";
 
 
-var fondo = new Image(); 
-fondo.src = mapa;
-fondo.addEventListener("load", dibjuar);
+var fondo = {
+    url: "imgs/tile.png",
+    cargaOK: false
+}
+var vaca = {
+    url: "imgs/vaca.png",
+    cargaOK: false
+};
+
+fondo.imagen = new Image(); 
+fondo.imagen.src = fondo.url;
+fondo.imagen.addEventListener("load", cargarFondo);
 
 //carga imagenes 
-var vaca = new Image();
-vaca.src = imgVaca;
-vaca.addEventListener("load", dibujarVacas);
+vaca.imagen = new Image();
+vaca.imagen.src = vaca.url;
+vaca.imagen.addEventListener("load", cargarVacas);
 
+function cargarFondo()
+{
+    fondo.cargaOK = true;
+    dibujar();
+
+}
+function cargarVacas()
+{
+    vaca.cargaOK = true;
+    dibujar();
+
+}
+
+/*
 var cerdo = new Image();
 cerdo.src = "imgs/cerdo.png";
-cerdo.addEventListener("load", dibujarCerdos);
+cerdo.addEventListener("load", cargarCerdos);
 
 var pollo = new Image();
 pollo.src = "imgs/pollo.png";
-pollo.addEventListener("load", dibujarPollos);
+pollo.addEventListener("load", cargarPollos);
+*/
 
-function dibjuar()
+function dibujar()
 {
-    papel.drawImage(fondo, 0, 0);
-}
-function dibujarVacas()
-{
-    papel.drawImage(vaca, 100, 10);
-}
-function dibujarCerdos()
-{
-    papel.drawImage(cerdo, 230, 450);
-}
-function dibujarPollos()
-{
-    papel.drawImage(pollo, 400, 20);
+    if(fondo.cargaOK)
+    {
+        papel.drawImage(fondo.imagen, 0, 0);
+    }
+    if(vaca.cargaOK)
+    {
+        papel.drawImage(vaca.imagen,10,100);
+    }
 }
 
 
