@@ -9,6 +9,8 @@ class Billete
 
 function entregarDinero()
 {
+    var t = document.getElementById("dinero");
+    dinero = parseInt(t.value); 
     for(var bi of caja)
     {
      //console.log(bi);
@@ -34,10 +36,19 @@ function entregarDinero()
 
     if(dinero > 0)
     {
-        console.log("Sorry. not money 😩")
+        console.log("Sorry. not money 😩");
+        document.write("Sorry. not money 😩")
+    }
+    else
+    {
+        for(var e of entregado)
+        {
+            document.write(e.cantidad + " billetes de $ " + e.valor + "<br/>");
+        }
+        console.log(entregado);
     }
 
-    console.log(entregado);
+   
 }
 
 var caja = []; //collecion de billetes que tengo en la caja
